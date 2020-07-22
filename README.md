@@ -1,44 +1,38 @@
-ansible-bit9
+bit9 [![circleci](https://circleci.com/gh/GSA/ansible-bit9.svg?style=svg)](https://circleci.com/gh/GSA/ansible-bit9)
 =========
 
-Bit9, the global leader in Advanced Threat Protection, today announced the results from an independent test demonstrating that Bit9 Parity Suite outperforms the competition in protecting against Advanced Persistent Threat (APT) attacks. This ansible role installs and configures the agent required to communicate with client machines.
+This ansible role installs and configures the bit9 agent required to communicate with client machines.
 
 Requirements
 ------------
 
-```bash
-windows_bit9_agent_filename: #windows installer msi
-```
+Required Packages
+- cpb.msi - windows installer package
 
 Role Variables
 --------------
 
-```bash
-None
-```
+- windows_bit9_agent_filename: #windows installer msi
 
 Dependencies
 ------------
-Acquire Installers
-```bash
-cpb.msi - windows installer package
-```
+
+None
 
 Example Playbook
 ----------------
 
-```bash
+```yaml
     - hosts: servers
       roles:
          - ansible-bit9
 ```
 
-License
--------
+Public domain
+-------------
 
-MIT
+This project is in the worldwide [public domain](LICENSE.md). As stated in [CONTRIBUTING](CONTRIBUTING.md):
 
-Author Information
-------------------
-
-Lance White - GSA/GEO
+> This project is in the public domain within the United States, and copyright and related rights in the work worldwide are waived through the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).
+>
+> All contributions to this project will be released under the CC0 dedication. By submitting a pull request, you are agreeing to comply with this waiver of copyright interest.
