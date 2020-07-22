@@ -1,2 +1,11 @@
 ---
-# tasks file for template
+- name: install windows carbon black protector agent
+  win_package:
+    path: '{{ win_agent_path }}\\{{ item.name }}'
+    chdir: '{{ win_agent_path }}'
+    state: present
+    log_path: '{{ win_agent_logs }}\\{{ item.name }}_log.txt'
+    validate_certs: no
+  with_items:
+    - { name: '{{ windows_bit9_agent_filename }}' }
+  when: ansible_os_family = 'Windows'
