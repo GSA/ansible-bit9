@@ -23,9 +23,9 @@ Example Playbook
 ----------------
 
 ```yaml
-    - hosts: servers
-      roles:
-         - ansible-bit9
+- hosts: servers
+  roles:
+     - ansible-bit9
 ```
 
 Public domain
