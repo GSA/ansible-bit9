@@ -1,5 +1,17 @@
 ---
-- name: install windows carbon black protector agent
+- name: create win_agent_path directory
+  win_file:
+    path: '{{ win_agent_path }}'
+    state: directory
+  when: ansible_os_family = 'Windows'
+
+- name: create win_agent_logs directory
+  win_file:
+    path: '{{ win_agent_logs }}'
+    state: directory
+  when: ansible_os_family = 'Windows'
+
+- name: install carbon black protector agent (windows)
   win_package:
     path: '{{ win_agent_path }}\\{{ item.name }}'
     chdir: '{{ win_agent_path }}'

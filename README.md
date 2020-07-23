@@ -6,13 +6,15 @@ This ansible role installs and configures the bit9 agent required to communicate
 Requirements
 ------------
 
-Required Packages
+Required Packages (this role requires access to the following packages/installers)
 - cpb.msi - windows installer package
 
 Role Variables
 --------------
 
-- windows_bit9_agent_filename: #windows installer msi
+| Variable | Default | Purpose |
+| ------ | ------ | ------ |
+| windows_bit9_agent_filename | "" | windows installer msi |
 
 Dependencies
 ------------
