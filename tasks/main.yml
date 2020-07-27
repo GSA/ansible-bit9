@@ -15,6 +15,7 @@
   win_stat:
     path: '{{ win_agent_path }}{{ windows_bit9_agent_filename }}'
   register: installer
+  when: ansible_os_family == 'Windows'
 
 # replace with S3 method
 - name: move installer to {{ win_agent_path }} directory
@@ -23,7 +24,7 @@
     dest: '{{ win_agent_path }}{{ item.name }}'
   with_items:
     - { name: '{{ windows_bit9_agent_filename }}'}
-  when: ansible_os_family == 'Windows' and installer.stat.exists == False
+  when: ansible_os_family == 'Windows' and installer.stat.exists
 
 - name: install bit9 agent (windows)
   win_package:
