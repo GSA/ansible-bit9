@@ -1,17 +1,31 @@
 ---
-- name: create win_agent_path directory
+- name: create {{ win_agent_path }} directory
   win_file:
     path: '{{ win_agent_path }}'
     state: directory
-  when: ansible_os_family = 'Windows'
+  when: ansible_os_family == 'Windows'
 
-- name: create win_agent_logs directory
+- name: create {{ win_agent_logs }} directory
   win_file:
     path: '{{ win_agent_logs }}'
     state: directory
-  when: ansible_os_family = 'Windows'
+  when: ansible_os_family == 'Windows'
 
-- name: install carbon black protector agent (windows)
+- name: checking for installer
+  win_stat:
+    path: '{{ win_agent_path }}{{ windows_bit9_agent_filename }}'
+  register: installer
+
+# replace with S3 method
+- name: move installer to {{ win_agent_path }} directory
+  win_copy:
+    src: '{{ lin_agent_path }}/{{ item.name }}'
+    dest: '{{ win_agent_path }}{{ item.name }}'
+  with_items:
+    - { name: '{{ windows_bit9_agent_filename }}'}
+  when: ansible_os_family == 'Windows' and installer.stat.exists == False
+
+- name: install bit9 agent (windows)
   win_package:
     path: '{{ win_agent_path }}\\{{ item.name }}'
     chdir: '{{ win_agent_path }}'
@@ -20,4 +34,4 @@
     validate_certs: no
   with_items:
     - { name: '{{ windows_bit9_agent_filename }}' }
-  when: ansible_os_family = 'Windows'
+  when: ansible_os_family == 'Windows'

@@ -1,5 +1,5 @@
 ---
 # defaults file for ansible-bit9
-win_agent_path: "C:\\Temp\\Agents" # default agent path directory windows
+win_agent_path: "C:\\Temp\\Agents\\" # default agent path directory windows
 lin_agent_path: "/opt/GSA/install_files" # default agent path directory redhat
 win_agent_logs: "C:\\Temp\\Agents\\Logs" # default agent log directory windows
