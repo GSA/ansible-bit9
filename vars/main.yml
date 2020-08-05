@@ -1,2 +1,3 @@
 ---
 # vars file for ansible-bit9
+windows_bit9_agent_url: ""
