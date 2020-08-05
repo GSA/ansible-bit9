@@ -9,6 +9,7 @@
   win_package:
     path: '{{ windows_bit9_agent_url }}'
     log_path: '{{ windows_agent_log }}\\bit9_log.txt'
+    product_id: '{{ windows_bit9_product_id }}'
     validate_certs: no
     state: present
     arguments: /qn
