@@ -1,9 +1,23 @@
 ---
+- name: checking for agent install
+  win_stat:
+    path: '{{ windows_bit9_agent_path }}'
+  register: path
+
+- debug:
+    msg: "bit9 agent not found"
+  when: path.stat.islnk is not defined
+
+- debug:
+    msg: "bit9 agent found skipping install"
+  when: path.stat.islnk is defined
+
 - name: create {{ windows_agent_log }} directory
   win_file:
     path: '{{ windows_agent_log }}'
     recurse: yes
     state: directory
+  when: path.stat.islnk is not defined
 
 - name: install bit9 agent (windows)
   win_package:
@@ -13,3 +27,9 @@
     validate_certs: no
     state: present
     arguments: /qn
+  when: path.stat.islnk is not defined
+
+- name: verify bit9 started
+  win_service:
+    name: parity
+    state: started

@@ -6,7 +6,7 @@ This ansible role installs and configures the bit9 agent required to communicate
 Requirements
 ------------
 
-Required Packages (this role requires access to the following packages/installers)
+Required Packages (this role requires access to the following packages/installers via an external repository)
 - cpb.msi - windows installer package
 
 Role Variables
@@ -14,7 +14,10 @@ Role Variables
 
 | Variable | Default | Purpose |
 | ------ | ------ | ------ |
-| windows_bit9_agent_filename | "" | windows installer msi |
+| windows_bigfix_agent_path | "C:\\Program Files (x86)\\FireEye" | default windows install directory |
+| windows_agent_log | "C:\Temp\Logs" | default agent windows log directory |
+| windows_bit9_agent_url | "" | windows installer msi |
+| windows_bit9_product_id | "" | windows product_id |
 
 Dependencies
 ------------
