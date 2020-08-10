@@ -17,6 +17,7 @@
     path: '{{ windows_agent_log }}'
     recurse: yes
     state: directory
+    validate_certs: no
   when: path.stat.islnk is not defined
 
 - name: install bit9 agent (windows)
