@@ -1,7 +1,7 @@
 ---
 - name: checking for agent install
   win_stat:
-    path: '{{ windows_bit9_agent_path }}'
+    path: '{{ windows_bit9_full_agent_path }}'
   register: path
 
 - debug:
@@ -17,15 +17,13 @@
     path: '{{ windows_agent_log }}'
     recurse: yes
     state: directory
-    validate_certs: no
   when: path.stat.islnk is not defined
 
 - name: install bit9 agent (windows)
   win_package:
     path: '{{ windows_bit9_agent_url }}'
-    log_path: '{{ windows_agent_log }}\\bit9_log.txt'
+    log_path: '{{ windows_agent_log }}\bit9_log.txt'
     product_id: '{{ windows_bit9_product_id }}'
-    validate_certs: no
     state: present
     arguments: /qn
   when: path.stat.islnk is not defined
@@ -34,3 +32,4 @@
   win_service:
     name: parity
     state: started
+    start_mode: auto
