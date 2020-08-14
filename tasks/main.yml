@@ -14,7 +14,7 @@
 
 - debug:
     msg: "bit9 agent not found"
-  when: not agent.exists
+  when: agent.exists
 
 - debug:
     msg: "bit9 agent found skipping install"
