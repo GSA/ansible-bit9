@@ -12,14 +12,6 @@
     msg: "bit9 agent found (skipping install)"
   when: agent.exists
 
-- debug:
-    msg: "bit9 agent not found"
-  when: agent.exists
-
-- debug:
-    msg: "bit9 agent found skipping install"
-  when: not agent.exists
-
 - name: create {{ windows_agent_log }} directory
   win_file:
     path: '{{ windows_agent_log }}'
